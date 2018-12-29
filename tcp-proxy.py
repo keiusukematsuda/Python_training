@@ -43,7 +43,7 @@ def proxy_handler(client_socket, remote_host, remote_port, receive_first):
     
     # リモートホストへの接続
     remote_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    remote_socket.connect((remote_host, remote_port))
+    remote_socket.connect((remote_host,remote_port))
     
     # 必要ならリモートホストからデータを受信
     if receive_first:
