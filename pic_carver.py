@@ -45,12 +45,12 @@ def extract_image(headers,http_payload):
                         image = zlib.decompress(image, 16+zlib.MAX_WBITS)
                     elif header['Content-Encoding'] == "deflate":
                         image = zlib.decompress(image)
-                except:
-                    pass
             except:
-                return None,None
+                    pass
+    except:
+        return None,None
 
-            return image,image_type
+    return image,image_type
 
 
 def face_detect(path,file_name):
