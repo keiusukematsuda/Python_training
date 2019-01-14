@@ -33,7 +33,6 @@ def extract_image(headers,http_payload):
 
     try:
         if "image" in headers['Content-Type']:
-            
             # 画像種別と画像本体の取得
             image_type = headers['Content-Type'].split("/")[1]
 
@@ -46,7 +45,8 @@ def extract_image(headers,http_payload):
                         image = zlib.decompress(image, 16+zlib.MAX_WBITS)
                     elif header['Content-Encoding'] == "deflate":
                         image = zlib.decompress(image)
-
+                except:
+                    pass
             except:
                 return None,None
 
@@ -82,7 +82,7 @@ def http_assembler(pcap_file):
     for session in sessions:
         http_payload = ""
         
-        for packet in session[session]:
+        for packet in sessions[session]:
             try:
                 if packet[TCP].dport == 80 or packet[TCP].sport == 80:
                     # ストリームの再構築
